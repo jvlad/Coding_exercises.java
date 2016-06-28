@@ -1,30 +1,45 @@
 package com.freeraven.datastructures.strings.uniqueness;
 
-import org.junit.Assert;
 import org.junit.Test;
-import org.junit.experimental.theories.DataPoint;
-import org.junit.experimental.theories.Theories;
-import org.junit.experimental.theories.Theory;
 import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 
+import java.util.Arrays;
+import java.util.Collection;
+
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assume.assumeTrue;
 
 /**
  * Created by zvlad on 6/29/16.
  */
-@RunWith(Theories.class)
+@RunWith(Parameterized.class)
 public class ImplWithHashSetTest {
-    @DataPoint
-    public static String a = "a";
+    private String stringToTest;
+    private boolean expectedResult;
 
-    @DataPoint
-    public static String b = "bb";
+    public ImplWithHashSetTest(String stringToTest, boolean expectedResult) {
+        this.stringToTest = stringToTest;
+        this.expectedResult = expectedResult;
+    }
 
-    @DataPoint
-    public static String c = "ccc";
+    @Parameterized.Parameters
+    public static Collection<Object[]> generateData() {
+        return Arrays.asList(new Object[][]{
+                {"abc", true},
+                {"abb", false},
+                {"aab", false},
+                {"aba", false},
+                {"some crazy wd", false}
+        });
+    }
 
-    @Theory
-    public void stringTest(String x, String y) {
-        assumeTrue(x.length() > 1);
-        System.out.println(x + " " + y);
-    }}
+    @Test
+    public void testWhatever() {
+        CharactersUniquenessChecker instance = new ImplWithHashSet();
+        boolean actualResult = instance.check(this.stringToTest);
+        assertThat(actualResult, is(this.expectedResult));
+    }
+
+}
