@@ -15,12 +15,12 @@ import static org.junit.Assume.assumeTrue;
  * Created by zvlad on 6/29/16.
  */
 @RunWith(Parameterized.class)
-public class ImplWithHashSetTest {
-    private String stringToTest;
+public class CharactersUniquenessCheckerTest {
+    private String input;
     private boolean expectedResult;
 
-    public ImplWithHashSetTest(String stringToTest, boolean expectedResult) {
-        this.stringToTest = stringToTest;
+    public CharactersUniquenessCheckerTest(String input, boolean expectedResult) {
+        this.input = input;
         this.expectedResult = expectedResult;
     }
 
@@ -31,14 +31,22 @@ public class ImplWithHashSetTest {
                 {"abb", false},
                 {"aab", false},
                 {"aba", false},
-                {"some crazy wd", false}
+                {"some crazy wd", false},
+                {"wrf 096_", true},
         });
     }
 
     @Test
-    public void testWhatever() {
-        CharactersUniquenessChecker instance = new ImplWithHashSet();
-        boolean actualResult = instance.check(this.stringToTest);
+    public void implWithSetDSTest() {
+        CharactersUniquenessChecker instance = new ImplWithSetDS();
+        boolean actualResult = instance.check(this.input);
+        assertThat(actualResult, is(this.expectedResult));
+    }
+
+    @Test
+    public void implWithoutSetTest() {
+        CharactersUniquenessChecker instance = new ImplWithoutSetDS();
+        boolean actualResult = instance.check(this.input);
         assertThat(actualResult, is(this.expectedResult));
     }
 

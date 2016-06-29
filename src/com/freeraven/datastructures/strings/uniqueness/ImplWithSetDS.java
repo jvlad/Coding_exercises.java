@@ -5,7 +5,7 @@ import java.util.HashSet;
 /**
  * Created by zvlad on 6/28/16.
  */
-public class ImplWithHashSet implements CharactersUniquenessChecker {
+public class ImplWithSetDS implements CharactersUniquenessChecker {
 
     @Override
     public boolean check(String stringToCheck) {
