@@ -6,11 +6,11 @@ package com.freeraven.datastructures.linkedlist.implementation;
 public interface LinkedList<T> {
     LinkedList<T> append(T obj);
 
-    LinkedList<T> getNext();
-
     T getData();
 
     T getData(int position);
 
-    String print();
+    void delete(int position);
+
+    int getSize();
 }

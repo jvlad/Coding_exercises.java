@@ -3,13 +3,14 @@ package com.freeraven.datastructures.linkedlist.implementation;
 /**
  * Created by zvlad on 6/29/16.
  */
-public class SinglyLinkedListImpl<T> implements LinkedList<T> {
+class SinglyLinkedListImpl<T> implements LinkedList<T> {
     private T data;
     private int size;
-    LinkedList<T> next;
+    private SinglyLinkedListImpl<T> next;
 
-    public SinglyLinkedListImpl(T data) {
+    SinglyLinkedListImpl(T data) {
         this.data = data;
+        next = null;
         size = 1;
     }
 
@@ -24,25 +25,39 @@ public class SinglyLinkedListImpl<T> implements LinkedList<T> {
         return this;
     }
 
-    @Override
-    public LinkedList<T> getNext() {
-        return next;
-    }
-
     public T getData() {
         return data;
     }
 
     @Override
-    public T getData(int position) {
-        if (position < 0 || position >= size) {
-            throw new IndexOutOfBoundsException();
+    public T getData(int targetPosition) {
+        checkPositionIsValid(targetPosition);
+        SinglyLinkedListImpl<T> targetNode = this;
+        for (int i = 0; i < targetPosition; i++) {
+            targetNode = targetNode.getNext();
         }
-        LinkedList<T> currentNode = this;
-        for (int i = 0; i != position; i++) {
-            currentNode = currentNode.getNext();
+        return targetNode.getData();
+    }
+
+    @Override
+    public void delete(int targetPosition) {
+        checkPositionIsValid(targetPosition);
+        SinglyLinkedListImpl<T> nodeBeforeTarget = this;
+        for (int i = 0; i < (targetPosition - 1); i++) {
+            nodeBeforeTarget = nodeBeforeTarget.getNext();
         }
-        return currentNode.getData();
+        SinglyLinkedListImpl<T> targetNode = nodeBeforeTarget.getNext();
+        SinglyLinkedListImpl<T> nodeAfterTarget = targetNode.getNext();
+        if (nodeAfterTarget == null){
+            nodeBeforeTarget.setNext(null);
+        } else {
+            nodeBeforeTarget.setNext(nodeAfterTarget);
+        }
+    }
+
+    @Override
+    public int getSize() {
+        return size;
     }
 
     @Override
@@ -50,7 +65,7 @@ public class SinglyLinkedListImpl<T> implements LinkedList<T> {
         return "[" + print() + "]";
     }
 
-    public String print() {
+    private String print() {
         StringBuilder builder = new StringBuilder();
         builder.append(data);
         if (next != null) {
@@ -58,5 +73,19 @@ public class SinglyLinkedListImpl<T> implements LinkedList<T> {
             builder.append(next.print());
         }
         return builder.toString();
+    }
+
+    private SinglyLinkedListImpl<T> getNext() {
+        return next;
+    }
+
+    private void setNext(SinglyLinkedListImpl<T> node) {
+        next = node;
+    }
+
+    private void checkPositionIsValid(int position) {
+        if (position < 0 || position >= size) {
+            throw new IndexOutOfBoundsException();
+        }
     }
 }
