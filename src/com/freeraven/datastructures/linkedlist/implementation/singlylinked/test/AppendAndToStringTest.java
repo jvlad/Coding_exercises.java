@@ -1,5 +1,6 @@
-package com.freeraven.datastructures.linkedlist.implementation;
+package com.freeraven.datastructures.linkedlist.implementation.singlylinked.test;
 
+import com.freeraven.datastructures.linkedlist.implementation.LinkedList;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -22,13 +23,10 @@ public class AppendAndToStringTest {
 
     @Parameterized.Parameters
     public static Collection<Object[]> generateData() {
-        SinglyLinkedListImpl<Integer> integerSinglyLinkedList = new SinglyLinkedListImpl<>(2);
-        integerSinglyLinkedList.append(56);
-        integerSinglyLinkedList.append(13);
         return Arrays.asList(new Object[][]{
-                {new SinglyLinkedListImpl<Integer>(2).append(3).append(16), "[2, 3, 16]"},
-                {new SinglyLinkedListImpl<Integer>(2).append(4).append(16), "[2, 4, 16]"},
-                {integerSinglyLinkedList, "[2, 56, 13]"},
+                {LinkedListWithIntegersFactory.createLinkedList(2, 3, 16), "[2, 3, 16]"},
+                {LinkedListWithIntegersFactory.createLinkedList(2, 4, 16), "[2, 4, 16]"},
+                {LinkedListWithIntegersFactory.createLinkedList(2, 56, 13), "[2, 56, 13]"},
                 });
     }
 

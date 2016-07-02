@@ -1,5 +1,6 @@
-package com.freeraven.datastructures.linkedlist.implementation;
+package com.freeraven.datastructures.linkedlist.implementation.singlylinked.test;
 
+import com.freeraven.datastructures.linkedlist.implementation.LinkedList;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -25,11 +26,11 @@ public class GetDataTest {
     @Parameterized.Parameters
     public static Collection<Object[]> generateData() {
         return Arrays.asList(new Object[][]{
-                {new SinglyLinkedListImpl<Integer>(2).append(78).append(13).append(42),
+                {LinkedListWithIntegersFactory.createLinkedList(2, 78, 13, 42),
                  1, 78},
-                {new SinglyLinkedListImpl<Integer>(435).append(0).append(0).append(1),
+                {LinkedListWithIntegersFactory.createLinkedList(435, 0, 0, 1),
                  0, 435},
-                {new SinglyLinkedListImpl<Integer>(435).append(0).append(0).append(1).append(32),
+                {LinkedListWithIntegersFactory.createLinkedList(435, 0, 0, 1, 32),
                  4, 32}
         });
     }

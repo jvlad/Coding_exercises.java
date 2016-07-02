@@ -1,28 +1,34 @@
-package com.freeraven.datastructures.linkedlist.implementation;
+package com.freeraven.datastructures.linkedlist.implementation.singlylinked;
+
+import com.freeraven.datastructures.linkedlist.implementation.LinkedList;
 
 /**
  * Created by zvlad on 6/29/16.
  */
-class SinglyLinkedListImpl<T> implements LinkedList<T> {
+public class SinglyLinkedListImpl<T> implements LinkedList<T> {
     private T data;
-    private int size;
+    private int size = 0;
     private SinglyLinkedListImpl<T> next;
 
-    SinglyLinkedListImpl(T data) {
-        this.data = data;
-        next = null;
-        size = 1;
+    public SinglyLinkedListImpl() {
     }
 
     @Override
     public LinkedList<T> append(T obj) {
-        if (next != null) {
-            next.append(obj);
+        if (data == null) {
+            data = obj;
         } else {
-            next = new SinglyLinkedListImpl<T>(obj);
+            appendToNext(obj);
         }
         size++;
         return this;
+    }
+
+    private void appendToNext(T obj) {
+        if (next == null) {
+            next = new SinglyLinkedListImpl<T>();
+        }
+        next.append(obj);
     }
 
     public T getData() {
@@ -48,7 +54,7 @@ class SinglyLinkedListImpl<T> implements LinkedList<T> {
         }
         SinglyLinkedListImpl<T> targetNode = nodeBeforeTarget.getNext();
         SinglyLinkedListImpl<T> nodeAfterTarget = targetNode.getNext();
-        if (nodeAfterTarget == null){
+        if (nodeAfterTarget == null) {
             nodeBeforeTarget.setNext(null);
         } else {
             nodeBeforeTarget.setNext(nodeAfterTarget);
