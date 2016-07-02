@@ -46,12 +46,12 @@ public class SinglyLinkedListImpl<T> implements LinkedList<T> {
     }
 
     @Override
-    public void delete(int targetPosition) {
+    public LinkedList<T> deleteNodeAtPosition(int targetPosition) {
         checkPositionIsValid(targetPosition);
-        SinglyLinkedListImpl<T> nodeBeforeTarget = this;
-        for (int i = 0; i < (targetPosition - 1); i++) {
-            nodeBeforeTarget = nodeBeforeTarget.getNext();
+        if (targetPosition == 0){
+            return deleteThisNode();
         }
+        SinglyLinkedListImpl<T> nodeBeforeTarget = getNodeBeforeTarget(targetPosition);
         SinglyLinkedListImpl<T> targetNode = nodeBeforeTarget.getNext();
         SinglyLinkedListImpl<T> nodeAfterTarget = targetNode.getNext();
         if (nodeAfterTarget == null) {
@@ -59,6 +59,25 @@ public class SinglyLinkedListImpl<T> implements LinkedList<T> {
         } else {
             nodeBeforeTarget.setNext(nodeAfterTarget);
         }
+        size--;
+        return this;
+    }
+
+    private SinglyLinkedListImpl<T> getNodeBeforeTarget(int targetPosition) {
+        SinglyLinkedListImpl<T> nodeBeforeTarget = this;
+        for (int i = 0; i < (targetPosition - 1); i++) {
+            nodeBeforeTarget = nodeBeforeTarget.getNext();
+        }
+        return nodeBeforeTarget;
+    }
+
+    private LinkedList<T> deleteThisNode() {
+        if (next != null) {
+            return next;
+        }
+        data = null;
+        size--;
+        return this;
     }
 
     @Override

@@ -10,7 +10,8 @@ public interface LinkedList<T> {
 
     T getData(int position);
 
-    void delete(int position);
+    LinkedList<T> deleteNodeAtPosition(int position);
 
+    // TODO: 7/2/16 write unitTest
     int getSize();
 }
