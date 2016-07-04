@@ -9,11 +9,13 @@ import java.util.List;
  */
 public class TestListFactory {
     public static LinkedList createLinkedList(Class<LinkedList> listType,
-                                       TestListConfiguration listConfiguration)
+                                              TestListConfiguration listConfiguration)
             throws IllegalAccessException, InstantiationException {
         LinkedList listToTest = listType.newInstance();
-        List parameters = listConfiguration.getDataItemsToPutInCollection();
-        parameters.forEach(listToTest::append);
+        if (listConfiguration != null) {
+            List parameters = listConfiguration.getDataItemsToPutInCollection();
+            parameters.forEach(listToTest::append);
+        }
         return listToTest;
     }
 }

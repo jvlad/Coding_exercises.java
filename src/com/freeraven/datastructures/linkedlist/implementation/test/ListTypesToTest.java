@@ -1,6 +1,6 @@
 package com.freeraven.datastructures.linkedlist.implementation.test;
 
-import com.freeraven.datastructures.linkedlist.implementation.singlylinked.SinglyLinkedListNode;
+import com.freeraven.datastructures.linkedlist.implementation.SinglyLinkedListNode;
 
 import java.util.Arrays;
 import java.util.List;

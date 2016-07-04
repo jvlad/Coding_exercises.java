@@ -8,6 +8,7 @@ import org.junit.experimental.theories.*;
 import org.junit.runner.RunWith;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -16,9 +17,11 @@ import static org.junit.Assert.assertThat;
 public class DeleteTest {
     @DataPoints
     public static TestListConfiguration[] inputAndExpectedOutput = {
-            new TestListConfiguration<>(Arrays.asList(1, 2, 3, 4), 0, "[2, 3, 4]"),
-            new TestListConfiguration<>(Arrays.asList(1, 2, 3, 4), 1, "[1, 3, 4]"),
-            new TestListConfiguration<>(Arrays.asList(1, 2, 3, 4), 3, "[1, 2, 3]"),
+            /* 0 */ new TestListConfiguration<>(Arrays.asList(1, 2, 3, 4), 0, "[2, 3, 4]"),
+            /* 1 */ new TestListConfiguration<>(Arrays.asList(1, 2, 3, 4), 1, "[1, 3, 4]"),
+            /* 2 */ new TestListConfiguration<>(Arrays.asList(1, 2, 3, 4), 3, "[1, 2, 3]"),
+            /* 3 */ new TestListConfiguration<>(Arrays.asList(3), 0, "[]"),
+            /* 4 */ new TestListConfiguration<>(Arrays.asList(3, 2), 1, "[3]"),
             };
 
     @Theory
@@ -31,7 +34,7 @@ public class DeleteTest {
 
     private void invokeTestLogic(TestListConfiguration<Integer, String> testListConfiguration, LinkedList list) {
         int originListSize = list.getSize();
-        int targetElementPosition = testListConfiguration.getPositionOfElementToTestChangesOn();
+        int targetElementPosition = testListConfiguration.getTestElementPosition();
         list.deleteNodeAt(targetElementPosition);
         assertThat(list.toString(), is(testListConfiguration.getExpectedTestOutput()));
         assertThat(list.getSize(), is(originListSize - 1));

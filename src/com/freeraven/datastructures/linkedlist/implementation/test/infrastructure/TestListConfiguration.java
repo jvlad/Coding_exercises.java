@@ -11,7 +11,7 @@ public class TestListConfiguration<TypeOfListItem, TypeOfTestOutput> {
     private int positionOfElementToTestChangesOn;
 
     public TestListConfiguration(List<TypeOfListItem> dataItemsToPutInList,
-                                 int positionOfElementToPerformTestActionOn,
+                                 Integer positionOfElementToPerformTestActionOn,
                                  TypeOfTestOutput expectedOutput) {
         this.dataItemsToPutInCollection = dataItemsToPutInList;
         this.expectedTestOutput = expectedOutput;
@@ -22,7 +22,7 @@ public class TestListConfiguration<TypeOfListItem, TypeOfTestOutput> {
         return dataItemsToPutInCollection;
     }
 
-    public int getPositionOfElementToTestChangesOn() {
+    public int getTestElementPosition() {
         return positionOfElementToTestChangesOn;
     }
 

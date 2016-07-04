@@ -1,6 +1,4 @@
-package com.freeraven.datastructures.linkedlist.implementation.singlylinked;
-
-import com.freeraven.datastructures.linkedlist.implementation.LinkedList;
+package com.freeraven.datastructures.linkedlist.implementation;
 
 /**
  * Created by zvlad on 6/29/16.
