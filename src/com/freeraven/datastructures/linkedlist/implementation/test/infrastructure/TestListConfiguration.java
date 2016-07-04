@@ -1,6 +1,5 @@
-package com.freeraven.datastructures.linkedlist.implementation.test;
+package com.freeraven.datastructures.linkedlist.implementation.test.infrastructure;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

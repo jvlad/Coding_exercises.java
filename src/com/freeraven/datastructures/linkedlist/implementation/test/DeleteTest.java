@@ -1,11 +1,12 @@
 package com.freeraven.datastructures.linkedlist.implementation.test;
 
 import com.freeraven.datastructures.linkedlist.implementation.LinkedList;
+import com.freeraven.datastructures.linkedlist.implementation.test.infrastructure.ListTypeParameterSupplier;
+import com.freeraven.datastructures.linkedlist.implementation.test.infrastructure.TestListConfiguration;
+import com.freeraven.datastructures.linkedlist.implementation.test.infrastructure.TestListFactory;
 import org.junit.experimental.theories.*;
 import org.junit.runner.RunWith;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 import java.util.Arrays;
 
 import static org.hamcrest.core.Is.is;
@@ -21,7 +22,7 @@ public class DeleteTest {
             };
 
     @Theory
-    public void test(@ListTypes Class<LinkedList> listType,
+    public void test(@ListTypeParameterSupplier.ListTypes Class<LinkedList> listType,
                      TestListConfiguration<Integer, String> testListConfiguration)
             throws Exception {
         LinkedList list = TestListFactory.createLinkedList(listType, testListConfiguration);
