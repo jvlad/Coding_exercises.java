@@ -5,17 +5,26 @@ import org.junit.experimental.theories.ParameterSignature;
 import org.junit.experimental.theories.ParameterSupplier;
 import org.junit.experimental.theories.PotentialAssignment;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by zvlad on 7/4/16.
  */
 public class ListTypesSupplier extends ParameterSupplier {
+    static List<Class> listImplementationsToTest = Arrays.asList(new Class[]{
+
+            SinglyLinkedListNode.class,
+
+    });
+
     @Override
     public List getValueSources(ParameterSignature parameterSignature) throws Throwable {
-        List<PotentialAssignment> listTypes = new ArrayList<PotentialAssignment>();
-        listTypes.add(PotentialAssignment.forValue("SinglyLinkedListNode", SinglyLinkedListNode.class));
-        return listTypes;
+        return ListTypesSupplier.listImplementationsToTest
+                .stream()
+                .map(listType ->
+                             PotentialAssignment.forValue(listType.getSimpleName(), listType))
+                .collect(Collectors.toList());
     }
 }
