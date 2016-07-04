@@ -25,8 +25,8 @@ public class AppendAndToStringTest {
     public static Collection<Object[]> generateData() {
         return Arrays.asList(new Object[][]{
                 {LinkedListWithIntegersFactory.createLinkedList(2, 3, 16), "[2, 3, 16]"},
-                {LinkedListWithIntegersFactory.createLinkedList(2, 4, 16), "[2, 4, 16]"},
-                {LinkedListWithIntegersFactory.createLinkedList(2, 56, 13), "[2, 56, 13]"},
+                {LinkedListWithIntegersFactory.createLinkedList(56), "[56]"},
+                {LinkedListWithIntegersFactory.createLinkedList(), "[]"},
                 });
     }
 

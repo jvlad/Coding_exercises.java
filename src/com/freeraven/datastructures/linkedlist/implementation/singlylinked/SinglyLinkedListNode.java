@@ -83,8 +83,16 @@ public class SinglyLinkedListNode<T> implements LinkedList<T> {
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("[");
+        StringBuilder result = new StringBuilder();
+        result.append("[");
+        if (size != 0){
+            appendItemsTo(result);
+        }
+        result.append("]");
+        return result.toString();
+    }
+
+    private void appendItemsTo(StringBuilder builder) {
         String itemsDelimiter = ", ";
         SinglyLinkedListNode<T> currentNode = head;
         while (currentNode != null) {
@@ -94,8 +102,6 @@ public class SinglyLinkedListNode<T> implements LinkedList<T> {
         }
         int trailingDelimiterPosition = builder.length() - itemsDelimiter.length();
         builder.delete(trailingDelimiterPosition, trailingDelimiterPosition + itemsDelimiter.length());
-        builder.append("]");
-        return builder.toString();
     }
 
     private void checkPositionIsValid(int position) {
