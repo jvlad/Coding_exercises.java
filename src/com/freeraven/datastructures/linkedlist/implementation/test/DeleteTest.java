@@ -26,6 +26,10 @@ public class DeleteTest {
                      TestListConfiguration<Integer, String> testListConfiguration)
             throws Exception {
         LinkedList list = TestListFactory.createLinkedList(listType, testListConfiguration);
+        invokeTestLogic(testListConfiguration, list);
+    }
+
+    private void invokeTestLogic(TestListConfiguration<Integer, String> testListConfiguration, LinkedList list) {
         int originListSize = list.getSize();
         int targetElementPosition = testListConfiguration.getPositionOfElementToTestChangesOn();
         list.deleteNodeAt(targetElementPosition);
