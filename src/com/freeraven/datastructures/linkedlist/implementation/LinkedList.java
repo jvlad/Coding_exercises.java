@@ -9,6 +9,6 @@ public interface LinkedList<T> {
     T getData(int position);
 
     void deleteNodeAt(int position);
-    
+
     int getSize();
 }
