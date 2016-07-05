@@ -11,4 +11,6 @@ public interface LinkedList<T> {
     void deleteNodeAt(int position);
 
     int getSize();
+
+    //todo implement and test insertElementToPosition(T obj, int position);
 }
