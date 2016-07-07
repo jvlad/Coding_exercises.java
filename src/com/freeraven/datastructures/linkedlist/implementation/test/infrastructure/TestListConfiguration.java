@@ -18,7 +18,7 @@ public class TestListConfiguration<TypeOfListItem, TypeOfTestOutput> {
         this.positionOfElementToTestChangesOn = positionOfElementToPerformTestActionOn;
     }
 
-    public List<TypeOfListItem> getDataItemsToPutInCollection() {
+    List<TypeOfListItem> getDataItemsToPutInList() {
         return dataItemsToPutInCollection;
     }
 

@@ -21,7 +21,7 @@ public class ListTypeParameterSupplier extends ParameterSupplier {
     }
 
     @Override
-    public List getValueSources(ParameterSignature parameterSignature) throws Throwable {
+    public List<PotentialAssignment> getValueSources(ParameterSignature parameterSignature) throws Throwable {
         return ListTypesToTest.LIST_TYPES_TO_TEST
                 .stream()
                 .map(listType ->

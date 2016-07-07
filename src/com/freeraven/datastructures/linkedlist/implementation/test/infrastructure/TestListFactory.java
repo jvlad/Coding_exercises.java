@@ -13,7 +13,7 @@ public class TestListFactory {
             throws IllegalAccessException, InstantiationException {
         LinkedList listToTest = listType.newInstance();
         if (listConfiguration != null) {
-            List parameters = listConfiguration.getDataItemsToPutInCollection();
+            List parameters = listConfiguration.getDataItemsToPutInList();
             parameters.forEach(listToTest::append);
         }
         return listToTest;
