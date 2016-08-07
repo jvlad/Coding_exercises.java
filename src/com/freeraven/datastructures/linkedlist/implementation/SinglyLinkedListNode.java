@@ -110,4 +110,20 @@ public class SinglyLinkedListNode<T> implements LinkedList<T> {
             throw new IndexOutOfBoundsException();
         }
     }
+
+    protected SinglyLinkedListNode<T> getNext() {
+        return next;
+    }
+
+    protected void setNext(SinglyLinkedListNode<T> next) {
+        this.next = next;
+    }
+
+    protected SinglyLinkedListNode<T> getHead() {
+        return head;
+    }
+
+    protected void setHead(SinglyLinkedListNode<T> head) {
+        this.head = head;
+    }
 }
