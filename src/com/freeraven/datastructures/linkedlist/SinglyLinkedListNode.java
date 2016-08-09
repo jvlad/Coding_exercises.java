@@ -114,25 +114,12 @@ public class SinglyLinkedListNode<T> implements LinkedList<T> {
         }
     }
 
-    /**
-     * This method call may lead to breaking list consistency: tail elements may become unreachable.
-     * @param sourceNodeIndex
-     * @param targetNodeIndex
-     */
-    protected void setLoop(int sourceNodeIndex, int targetNodeIndex) {
-        if (!(sourceNodeIndex > targetNodeIndex)) {
-            throw new IllegalArgumentException("\n\tLoop link should be created FROM element which is more close to tail of the list (has bigger index value) TO element which is more close to the beginning of the list (has smaller index value)."
-                                               + "\n\n\tBut specified indexes were:"
-                                               + "\n\tfrom: " + sourceNodeIndex
-                                               + "\n\tto: " + targetNodeIndex);
-        }
-        SinglyLinkedListNode<T> sourceNode = getNodeAtPosition(sourceNodeIndex);
-        SinglyLinkedListNode<T> targetNode = getNodeAtPosition(targetNodeIndex);
-        sourceNode.next = targetNode;
-    }
-
     protected SinglyLinkedListNode<T> getNext() {
         return next;
+    }
+
+    protected void setNext(SinglyLinkedListNode<T> next) {
+        this.next = next;
     }
 
     protected SinglyLinkedListNode<T> getTail() {

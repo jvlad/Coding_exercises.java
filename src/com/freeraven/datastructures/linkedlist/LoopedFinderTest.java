@@ -10,13 +10,12 @@ import org.junit.runner.RunWith;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(Theories.class)
-public class LoopedLinkedListTest {
+public class LoopedFinderTest {
     @DataPoints
     public static TestListConfiguration[] testListConfigurations = {
             /* 0 */ new TestListConfiguration<>(Arrays.asList(1, 2, 3, 4), null, false),
@@ -29,18 +28,24 @@ public class LoopedLinkedListTest {
 
     @Theory
     public void test(TestListConfiguration<Integer, Boolean> testConfiguration) throws Exception {
-        Class listType = LoopedLinkedList.class;
-        LoopedLinkedList listToTest = (LoopedLinkedList) TestListFactory
+        Class listType = LoopedLinkedListNode.class;
+        LoopedLinkedListNode listToTest = (LoopedLinkedListNode) TestListFactory
                 .createLinkedList(listType, testConfiguration);
 
-        ArrayList<Integer> testElementPositionList = testConfiguration.getTestElementPositionList();
-        if (testElementPositionList != null) {
-            listToTest.setLoop(testElementPositionList.get(0), testElementPositionList.get(1));
+        ArrayList<Integer> loopBoundaries = testConfiguration.getTestElementPositionList();
+        if (loopBoundaries != null) {
+            Integer sourceNodeIndex = loopBoundaries.get(0);
+            Integer targetNodeIndex = loopBoundaries.get(1);
+            listToTest.setLoop(sourceNodeIndex, targetNodeIndex);
         }
 
-        boolean actualResult = listToTest.hasLoop();
-        assertThat(actualResult, is(testConfiguration.getExpectedTestOutput()));
+        boolean expectedTestOutput = testConfiguration.getExpectedTestOutput();
+        boolean actualResult;
+
+        actualResult = listToTest.hasLoop(listToTest.new TraversingLoopDetector());
+        assertThat(actualResult, is(expectedTestOutput));
+
+        actualResult = listToTest.hasLoop(listToTest.new RunnersLoopDetector());
+        assertThat(actualResult, is(expectedTestOutput));
     }
-
-
 }
