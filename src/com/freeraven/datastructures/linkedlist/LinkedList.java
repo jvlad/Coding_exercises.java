@@ -1,4 +1,4 @@
-package com.freeraven.datastructures.linkedlist.implementation;
+package com.freeraven.datastructures.linkedlist;
 
 /**
  * Created by zvlad on 6/29/16.

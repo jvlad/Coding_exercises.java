@@ -1,6 +1,6 @@
-package com.freeraven.datastructures.linkedlist.implementation.test.infrastructure;
+package com.freeraven.datastructures.linkedlist.commontest.infrastructure;
 
-import com.freeraven.datastructures.linkedlist.implementation.test.ListTypesToTest;
+import com.freeraven.datastructures.linkedlist.commontest.ListTypesToTest;
 import org.junit.experimental.theories.ParameterSignature;
 import org.junit.experimental.theories.ParameterSupplier;
 import org.junit.experimental.theories.ParametersSuppliedBy;

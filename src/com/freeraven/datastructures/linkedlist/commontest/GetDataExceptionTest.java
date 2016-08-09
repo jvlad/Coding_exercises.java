@@ -1,12 +1,10 @@
-package com.freeraven.datastructures.linkedlist.implementation.test;
+package com.freeraven.datastructures.linkedlist.commontest;
 
-import com.freeraven.datastructures.linkedlist.implementation.LinkedList;
-import com.freeraven.datastructures.linkedlist.implementation.test.infrastructure.ListTypeParameterSupplier;
-import com.freeraven.datastructures.linkedlist.implementation.test.infrastructure.TestListConfiguration;
-import com.freeraven.datastructures.linkedlist.implementation.test.infrastructure.TestListFactory;
-import org.junit.Assert;
+import com.freeraven.datastructures.linkedlist.LinkedList;
+import com.freeraven.datastructures.linkedlist.commontest.infrastructure.ListTypeParameterSupplier;
+import com.freeraven.datastructures.linkedlist.commontest.infrastructure.TestListConfiguration;
+import com.freeraven.datastructures.linkedlist.commontest.infrastructure.TestListFactory;
 import org.junit.Rule;
-import org.junit.Test;
 import org.junit.experimental.theories.DataPoints;
 import org.junit.experimental.theories.Theories;
 import org.junit.experimental.theories.Theory;
@@ -19,10 +17,10 @@ import java.util.Arrays;
 public class GetDataExceptionTest {
     @DataPoints
     public static TestListConfiguration[] inputAndExpectedOutput = {
-            /* 0 */ new TestListConfiguration<>(Arrays.asList(2, 78, 13, 42), -1, null),
-            /* 1 */ new TestListConfiguration<>(Arrays.asList(2, 78, 13, 42), 4, null),
-            /* 2 */ new TestListConfiguration<>(Arrays.asList(2, 78, 13, 42), -50, null),
-            /* 3 */ new TestListConfiguration<>(Arrays.asList(2, 78, 13, 42), 50, null),
+            /* 0 */ new TestListConfiguration<>(Arrays.asList(2, 78, 13, 42), Arrays.asList(-1), null),
+            /* 1 */ new TestListConfiguration<>(Arrays.asList(2, 78, 13, 42), Arrays.asList(4), null),
+            /* 2 */ new TestListConfiguration<>(Arrays.asList(2, 78, 13, 42), Arrays.asList(-50), null),
+            /* 3 */ new TestListConfiguration<>(Arrays.asList(2, 78, 13, 42), Arrays.asList(50), null)
             };
 
     @Rule
@@ -37,7 +35,7 @@ public class GetDataExceptionTest {
     }
 
     private void invokeTestLogic(TestListConfiguration<Integer, Object> testListConfiguration, LinkedList list) {
-        int testElementPosition = testListConfiguration.getTestElementPosition();
+        int testElementPosition = testListConfiguration.getTestElementPositionList().get(0);
 
         exception.expect(IndexOutOfBoundsException.class);
         list.getData(testElementPosition);

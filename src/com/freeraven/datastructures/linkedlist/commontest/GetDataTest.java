@@ -1,9 +1,9 @@
-package com.freeraven.datastructures.linkedlist.implementation.test;
+package com.freeraven.datastructures.linkedlist.commontest;
 
-import com.freeraven.datastructures.linkedlist.implementation.LinkedList;
-import com.freeraven.datastructures.linkedlist.implementation.test.infrastructure.ListTypeParameterSupplier;
-import com.freeraven.datastructures.linkedlist.implementation.test.infrastructure.TestListConfiguration;
-import com.freeraven.datastructures.linkedlist.implementation.test.infrastructure.TestListFactory;
+import com.freeraven.datastructures.linkedlist.LinkedList;
+import com.freeraven.datastructures.linkedlist.commontest.infrastructure.ListTypeParameterSupplier;
+import com.freeraven.datastructures.linkedlist.commontest.infrastructure.TestListConfiguration;
+import com.freeraven.datastructures.linkedlist.commontest.infrastructure.TestListFactory;
 import org.junit.experimental.theories.DataPoints;
 import org.junit.experimental.theories.Theories;
 import org.junit.experimental.theories.Theory;
@@ -18,9 +18,9 @@ import static org.junit.Assert.assertThat;
 public class GetDataTest {
     @DataPoints
     public static TestListConfiguration[] inputAndExpectedOutput = {
-            /* 0 */ new TestListConfiguration<>(Arrays.asList(2, 78, 13, 42), 1, 78),
-            /* 1 */ new TestListConfiguration<>(Arrays.asList(435, 0, 0, 1), 0, 435),
-            /* 2 */ new TestListConfiguration<>(Arrays.asList(435, 0, 0, 1, 32), 4, 32),
+            /* 0 */ new TestListConfiguration<>(Arrays.asList(2, 78, 13, 42), Arrays.asList(1), 78),
+            /* 1 */ new TestListConfiguration<>(Arrays.asList(435, 0, 0, 1), Arrays.asList(0), 435),
+            /* 2 */ new TestListConfiguration<>(Arrays.asList(435, 0, 0, 1, 32), Arrays.asList(4), 32),
             };
 
     @Theory
@@ -32,7 +32,7 @@ public class GetDataTest {
     }
 
     private void invokeTestLogic(TestListConfiguration<Integer, Object> testListConfiguration, LinkedList list) {
-        int testElementPosition = testListConfiguration.getTestElementPosition();
+        int testElementPosition = testListConfiguration.getTestElementPositionList().get(0);
         Object testElementValue = list.getData(testElementPosition);
         assertThat(testListConfiguration.getExpectedTestOutput(), is(testElementValue));
     }

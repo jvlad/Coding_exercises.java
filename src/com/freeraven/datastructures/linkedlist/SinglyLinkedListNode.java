@@ -1,4 +1,4 @@
-package com.freeraven.datastructures.linkedlist.implementation;
+package com.freeraven.datastructures.linkedlist;
 
 /**
  * Created by zvlad on 6/29/16.
@@ -9,9 +9,6 @@ public class SinglyLinkedListNode<T> implements LinkedList<T> {
     private SinglyLinkedListNode<T> next;
     private SinglyLinkedListNode<T> head;
     private SinglyLinkedListNode<T> tail;
-
-    public SinglyLinkedListNode() {
-    }
 
     @Override
     public void append(T obj) {
@@ -65,7 +62,13 @@ public class SinglyLinkedListNode<T> implements LinkedList<T> {
         }
     }
 
-    private SinglyLinkedListNode<T> getNodeAtPosition(int targetPosition) {
+    /**
+     * There is more efficient implementation for this functionality
+     * for the case when it is needed to retrieve several nodes with ascending indexes.
+     * @param targetPosition desired index
+     * @return node with specified index
+     */
+    protected SinglyLinkedListNode<T> getNodeAtPosition(int targetPosition) {
         checkPositionIsValid(targetPosition);
         SinglyLinkedListNode<T> targetNode = head;
         for (int i = 0; i < targetPosition; i++) {
@@ -111,19 +114,28 @@ public class SinglyLinkedListNode<T> implements LinkedList<T> {
         }
     }
 
+    /**
+     * This method call may lead to breaking list consistency: tail elements may become unreachable.
+     * @param sourceNodeIndex
+     * @param targetNodeIndex
+     */
+    protected void setLoop(int sourceNodeIndex, int targetNodeIndex) {
+        if (!(sourceNodeIndex > targetNodeIndex)) {
+            throw new IllegalArgumentException("\n\tLoop link should be created FROM element which is more close to tail of the list (has bigger index value) TO element which is more close to the beginning of the list (has smaller index value)."
+                                               + "\n\n\tBut specified indexes were:"
+                                               + "\n\tfrom: " + sourceNodeIndex
+                                               + "\n\tto: " + targetNodeIndex);
+        }
+        SinglyLinkedListNode<T> sourceNode = getNodeAtPosition(sourceNodeIndex);
+        SinglyLinkedListNode<T> targetNode = getNodeAtPosition(targetNodeIndex);
+        sourceNode.next = targetNode;
+    }
+
     protected SinglyLinkedListNode<T> getNext() {
         return next;
     }
 
-    protected void setNext(SinglyLinkedListNode<T> next) {
-        this.next = next;
-    }
-
-    protected SinglyLinkedListNode<T> getHead() {
-        return head;
-    }
-
-    protected void setHead(SinglyLinkedListNode<T> head) {
-        this.head = head;
+    protected SinglyLinkedListNode<T> getTail() {
+        return tail;
     }
 }
